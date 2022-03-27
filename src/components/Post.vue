@@ -30,7 +30,7 @@ export default {
     transition: $transition
     font-weight: bold
     &:hover
-      border-color: $border-color__hover
+      border-color: rgb(var(--v-theme-border-hover))
     @media (max-width: 410px)
       width: 100%
 

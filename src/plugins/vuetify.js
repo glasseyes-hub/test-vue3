@@ -1,10 +1,24 @@
 // Styles
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/styles'
+import "@mdi/font/css/materialdesignicons.css";
+import "vuetify/styles";
 
 // Vuetify
-import { createVuetify } from 'vuetify'
+import { createVuetify } from "vuetify";
 
-export default createVuetify(
-  // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
-)
+const aztecTheme = {
+  dark: false,
+  colors: {
+    background: "#eaeff5",
+    border: "#e3e6eb",
+    "border-hover": "#d3d3d4",
+  },
+};
+
+export default createVuetify({
+  theme: {
+    defaultTheme: "aztecTheme",
+    themes: {
+      aztecTheme,
+    },
+  },
+});

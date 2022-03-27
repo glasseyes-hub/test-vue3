@@ -46,7 +46,7 @@ $height: 40px
     transition: $transition
     &.search__focused,
     &.search__focused > .icon
-      border-color: $border-color__hover
+      border-color: rgb(var(--v-theme-border-hover))
     @media (max-width: 400px)
       width: 100%
 

@@ -82,17 +82,10 @@ export default {
 $content-gap: 25px
 $post-gap: 20px
 
-*
-  padding: 0
-  marign: 0
-
-body
-  background-color: $background-color
-
 .container
   display: flex
-  background-color: $background-color
   flex-direction: column
+  min-height: 100vh
   align-items: center
   gap: $content-gap
   margin: 0 auto
