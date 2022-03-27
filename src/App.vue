@@ -79,7 +79,7 @@ export default {
 <style lang="sass">
 @import '@/styles/main.scss'
 
-$contant-gap: 25px
+$content-gap: 25px
 $post-gap: 20px
 
 *
@@ -94,18 +94,18 @@ body
   background-color: $background-color
   flex-direction: column
   align-items: center
-  gap: $contant-gap
+  gap: $content-gap
   margin: 0 auto
-  padding: $contant-gap 0
+  padding: $content-gap 0
 
 @media screen
   .posts
-    columns: 3
     column-gap: $post-gap
-    & > *
-      margin-bottom: $post-gap
+    columns: 3
     @media (max-width: 1340px)
       columns: 2
     @media (max-width: 900px)
       columns: 1
+    & > *
+      margin-bottom: $post-gap
 </style>
