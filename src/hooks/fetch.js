@@ -5,8 +5,14 @@ export default {
 };
 
 async function useFetch(url, options) {
-  const res = await fetch(url, options);
-  const response = await res.json();
+  try {
+    const res = await fetch(url, options);
+    const response = await res.json();
 
-  return response;
+    return response;
+  } catch (e) {
+    throw new Error(
+      `Ошибка при обращении к удаленному серверу по адресу: ${url}. ${e}`
+    );
+  }
 }

@@ -1,6 +1,9 @@
 <template>
   <v-app>
     <v-main>
+      <v-alert v-if="error" @click="error = false" type="error">{{
+        errorMessage
+      }}</v-alert>
       <div class="container">
         <Search v-model="searchString" />
         <v-progress-circular
@@ -41,6 +44,8 @@ export default {
     posts: [],
     searchString: "",
     loading: true,
+    error: false,
+    errorMessage: "",
   }),
   computed: {
     showPosts() {
@@ -52,26 +57,31 @@ export default {
     },
   },
   async mounted() {
-    const posts = await this.useFetch(
-      `http://jsonplaceholder.typicode.com/posts?_limit=${this.limit}`
-    );
+    try {
+      const posts = await this.useFetch(
+        `http://jsonplaceholder.typicode.com/posts?_limit=${this.limit}`
+      );
 
-    this.posts = await Promise.all(
-      posts.map(async ({ id, title, body, userId }) => {
-        const author = await this.useFetch(
-          `http://jsonplaceholder.typicode.com/users/${userId}`
-        );
+      this.posts = await Promise.all(
+        posts.map(async ({ id, title, body, userId }) => {
+          const author = await this.useFetch(
+            `http://jsonplaceholder.typicode.com/users/${userId}`
+          );
 
-        return {
-          id,
-          title,
-          body,
-          author,
-        };
-      })
-    );
-
-    this.loading = false;
+          return {
+            id,
+            title,
+            body,
+            author,
+          };
+        })
+      );
+    } catch (e) {
+      this.error = true;
+      this.errorMessage = e;
+    } finally {
+      this.loading = false;
+    }
   },
 };
 </script>
