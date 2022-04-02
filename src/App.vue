@@ -65,7 +65,8 @@ export default {
       this.posts = await Promise.all(
         posts.map(async ({ id, title, body, userId }) => {
           const author = await this.useFetch(
-            `http://jsonplaceholder.typicode.com/users/${userId}`
+            `http://jsonplaceholder.typicode.com/users/${userId}`,
+            { cache: "v1-authors" }
           );
 
           return {
