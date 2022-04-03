@@ -12,7 +12,7 @@
           color="blue"
         ></v-progress-circular>
         <Suspense>
-          <div class="posts">
+          <transition-group tag="div" class="posts" name="posts">
             <Post
               v-for="post of showPosts"
               :key="post.id"
@@ -20,7 +20,7 @@
               :body="post.body"
               :author="post.author.name"
             />
-          </div>
+          </transition-group>
         </Suspense>
       </div>
     </v-main>
@@ -112,4 +112,12 @@ $post-gap: 20px
       columns: 1
     & > *
       margin-bottom: $post-gap
+
+    &-enter-active,
+    &-leave-active
+      transition: all 0.5s ease-out
+
+    &-enter-from,
+    &-leave-to
+      opacity: 0
 </style>
